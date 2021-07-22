@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Page</title>
+    {% load static%}
+    <script src="{% static 'script.js' %}"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="col-lg-8 border border-success p-4 m-4 mx-auto">
+        {%for i in questions %}
+        <h1>Question - {{i.questions}}</h1>
+        <form>
+            <div class="radio">
+                <label><input type="radio" id="option1" name="name" value="{{i.option1}}">{{i.option1}}</label>
+            </div>
+
+            <div class="radio">
+                <label><input type="radio" id="option2" name="name" value="{{i.option2}}">{{i.option2}}</label>
+            </div>
+
+            <div class="radio">
+                <label><input type="radio" id="option3" name="name" value="{{i.option3}}">{{i.option3}}</label>
+            </div>
+
+            <div class="radio">
+                <label><input type="radio" id="option4" name="name" value="{{i.option4}}">{{i.option4}}</label>
+            </div>
+        </form>
+
+        {%endfor%}
+        <div class="form-group">
+            <button class="btn btn-success " id="save_ans">submit Answer</button>
+        </div>
+        <div class="paginator">
+            <div class="form-group">
+                {% if questions.has_next %}
+                    <a href="?page={{ questions.next_page_number }}"><button class="btn form-control btn-primary" id="submitAnswer">Next</button></a>
+                {% else %}
+                   <a href="/result/"><button class="btn form-control btn-success" id="submitAnswer">Submit Quiz</button></a>  
+                {% endif %}      
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>
+</html>
